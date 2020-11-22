@@ -1,12 +1,20 @@
 <template>
-    <pre>{{ $page.auth.user }}</pre>
+    <div>
+        <b-message v-if="flash.warning" title="Notice" type="is-warning" aria-close-label="Close message">
+            {{flash.warning}}
+        </b-message>
+        <pre>{{ $page.auth.user }}</pre>
+    </div>
 </template>
 
 <script>
 /* Layout */
-import Layout from '@/Layouts/general';
+import Layout from '@/layouts/General';
 
 export default {
-    layout: Layout
+    layout: Layout,
+    props: {
+        flash: Object
+    }
 }
 </script>

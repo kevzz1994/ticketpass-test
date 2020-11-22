@@ -20,6 +20,7 @@ Route::group([
 ], function () {
     Route::get('login', 'AuthenticationController@index')->name('auth')->middleware('guest');
     Route::post('login', 'AuthenticationController@login')->name('auth.login')->middleware('guest');
+    Route::get('register', 'AuthenticationController@showRegister')->name('auth.register')->middleware('guest');
     Route::post('register', 'AuthenticationController@register')->name('auth.register')->middleware('guest');
     Route::post('logout', 'AuthenticationController@logout')->name('auth.logout')->middleware('auth');
 });

@@ -14,7 +14,7 @@
                     <inertia-link :href="$route('auth.logout')" method="post" v-if="$page.auth.user">
                         <b-button type="is-info is-light">Logout</b-button>
                     </inertia-link>
-                    <inertia-link :href="$route('auth')" method="post" v-else>
+                    <inertia-link :href="$route('auth')" v-else>
                         <b-button type="is-info is-light">Login</b-button>
                     </inertia-link>
                 </b-navbar-item>

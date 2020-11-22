@@ -1,30 +1,36 @@
 <template>
     <div>
-        <form @submit.prevent="loginUser()">
-            <h1>Log in</h1>
-
-            <article v-if="flash.error" class="message is-danger">
-                <div class="message-body">
-                    {{ flash.error }}
-                </div>
-            </article>
+        <form @submit.prevent="register()">
+            <h1>Create an Account</h1>
+            <h2>Create an account to continue</h2>
 
             <b-field label="Email" :type="errors.email ? 'is-danger' : ''"
                      :message="errors.email ? 'Email is already in use' : ''">
                 <b-input type="email" v-model="email" required/>
             </b-field>
 
-            <b-field label="Password">
+            <b-field label="Name">
+                <b-input v-model="name" required/>
+            </b-field>
+
+            <b-field label="Password" :type="errors.password ? 'is-danger' : ''"
+                     :message="errors.password ? 'Password is too weak' : ''">
                 <b-input type="password" v-model="password" password-reveal required/>
+            </b-field>
+
+            <b-field>
+                <b-checkbox v-model="tos_accept" required>
+                    I accept terms and conditions
+                </b-checkbox>
             </b-field>
 
             <div class="actions">
                 <b-button native-type="submit" type="is-success" expanded>{{
-                       'Log in'
+                        'Sign up'
                     }}
                 </b-button>
 
-                <h3>Dont have an account yet? <a :href="$route('auth.register')">Register here</a></h3>
+                <h3>Already have an account? <a :href="$route('auth.login')" >Login</a></h3>
             </div>
         </form>
     </div>
@@ -36,24 +42,26 @@ import Layout from '@/layouts/General';
 export default {
     layout: Layout,
     props: {
-        errors: Object,
-        flash: Object
+        errors: Object
     },
     data() {
         return {
             email: '',
+            name: '',
             password: '',
+            tos_accept: false,
         }
     },
     methods: {
-        loginUser() {
+        register() {
             this.$inertia.post(
-                this.$route('auth.login'), {
+                this.$route('auth.register'), {
                     email: this.email,
+                    name: this.name,
                     password: this.password,
-                },
+                }
             );
-        },
+        }
     }
 }
 </script>
