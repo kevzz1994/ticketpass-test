@@ -3,8 +3,12 @@
 
 namespace App\Plugins\PasswordValidation;
 
-
 interface IPasswordValidator
 {
-    public function validate($password): bool;
+    /**
+     * Validates if a password is strong enough
+     * @param $password string the password to validate
+     * @return bool returns true on successful validation, false otherwise
+     */
+    public function validate(string $password): bool;
 }
